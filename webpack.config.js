@@ -30,7 +30,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Kngihts Travails',
+      title: 'Knights Travails',
       filename: 'index.html',
       template: './src/template.html',
     }),
