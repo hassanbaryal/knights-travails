@@ -1,7 +1,8 @@
 class Node {
-  constructor(x, y) {
+  constructor(x, y, node) {
     this.x = x;
     this.y = y;
+    this.dom = node;
     this.tl = null;
     this.tr = null;
     this.rt = null;
@@ -10,6 +11,10 @@ class Node {
     this.bl = null;
     this.lb = null;
     this.lt = null;
+  }
+
+  setDOM(node) {
+    this.dom = node;
   }
 
   setTL(node) {
