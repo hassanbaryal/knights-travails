@@ -113,8 +113,8 @@ main {
 }
 
 .space img {
-  height: 70%;
-  width: 70%;
+  height: clamp(1rem, 70%, 3.5rem);
+  width: clamp(1rem, 70%, 3.5rem);;
 }
 
 .board div:nth-child(-n + 8):nth-child(even),
