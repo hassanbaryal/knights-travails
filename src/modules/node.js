@@ -50,6 +50,20 @@ class Node {
   }
 }
 
+function createNodeArray() {
+  const nodeArray = [];
+  for (let y = 0; y < 8; y += 1) {
+    const tempArray = [];
+    for (let x = 0; x < 8; x += 1) {
+      const space = document.querySelector(`[data-x='${x}'][data-y='${y}']`);
+      const tempNode = new Node(x, y, space);
+      tempArray.push(tempNode);
+    }
+    nodeArray.push(tempArray);
+  }
+  return nodeArray;
+}
+
 function knightMoves(startPosition, endPosition) {
   console.log(startPosition);
   console.log(endPosition);
