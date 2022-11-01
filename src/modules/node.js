@@ -1,3 +1,8 @@
+// Each node represents a position on a chess board. x and y
+// are the coordinates of each chess position,
+// where 0,0  is the top left square.
+// tl, tr, rt, rb, br, bl, lb, and lt represent the squares/nodes that a knight can move from
+// position x, y
 class Node {
   constructor(x, y, node) {
     this.x = x;
@@ -89,13 +94,12 @@ function createGraph(nodeArray) {
 // and the end position (signified by endPosition array).
 // This utilizes a breadth first search algorithm
 // (a depth first algorithm would cause an infinite loop of recursive calls).
-function knightMoves(node, endPosition, cb = null, queue = [], traversalPath = []) {
+function knightMoves(node, endPosition, queue = [], traversalPath = []) {
   if (node.x === endPosition[0] && node.y === endPosition[1]) {
     traversalPath.push(node);
     return traversalPath;
   }
   if (queue.length < 1) {
-    if (cb) cb(node);
     queue.push(node);
   }
   traversalPath.push(queue[0]);
@@ -115,7 +119,7 @@ function knightMoves(node, endPosition, cb = null, queue = [], traversalPath = [
     return [queue[0]].concat([found]);
   }
   const removedNode = queue.shift();
-  const shortestPath = knightMoves(queue[0], endPosition, cb, queue, traversalPath);
+  const shortestPath = knightMoves(queue[0], endPosition, queue, traversalPath);
   const removedNodeValues = Object.values(removedNode);
   if (removedNodeValues.includes(shortestPath[0])) {
     return [removedNode].concat(shortestPath);
