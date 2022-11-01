@@ -24,6 +24,11 @@ function activateButtons(btnToActivate) {
 }
 
 function placeKnight(space) {
+  if (space.classList.contains('goal-placed')) {
+    // eslint-disable-next-line no-alert
+    alert('Position already occupied!');
+    return;
+  }
   const spaceWithKnight = document.querySelector('.knight-placed');
   if (spaceWithKnight) {
     spaceWithKnight.children[0].remove();
@@ -36,6 +41,11 @@ function placeKnight(space) {
 }
 
 function placeGoal(space) {
+  if (space.classList.contains('knight-placed')) {
+    // eslint-disable-next-line no-alert
+    alert('Position already occupied!');
+    return;
+  }
   const spaceWithGoal = document.querySelector('.goal-placed');
   if (spaceWithGoal) {
     spaceWithGoal.children[0].remove();
