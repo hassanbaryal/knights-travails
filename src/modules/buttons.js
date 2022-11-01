@@ -64,6 +64,7 @@ function placeGoal(space) {
 function resetBoard() {
   const spaceWithKnight = document.querySelector('.knight-placed');
   const spaceWithGoal = document.querySelector('.goal-placed');
+  const moveNumberElements = document.querySelectorAll('.move-number');
   if (spaceWithKnight) {
     spaceWithKnight.children[0].remove();
     spaceWithKnight.classList.toggle('knight-placed');
@@ -72,7 +73,11 @@ function resetBoard() {
     spaceWithGoal.children[0].remove();
     spaceWithGoal.classList.toggle('goal-placed');
   }
-  // add code to remove move number spaces
+  if (moveNumberElements) {
+    moveNumberElements.forEach((element) => {
+      element.remove();
+    });
+  }
 }
 
 function toggleError() {
