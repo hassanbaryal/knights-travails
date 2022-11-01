@@ -50,6 +50,9 @@ class Node {
   }
 }
 
+// Creates a 2d Array of nodes that represent a chess board.
+// Each node represents a space on a chess board, that points
+// to other spaces according to the movements of a knight piece
 function createNodeArray() {
   const nodeArray = [];
   for (let y = 0; y < 8; y += 1) {
@@ -62,6 +65,24 @@ function createNodeArray() {
     nodeArray.push(tempArray);
   }
   return nodeArray;
+}
+
+// Assigns each node/space pointers to other nodes/spaces
+// if it adheres to the movements of a knight piece
+function createGraph(nodeArray) {
+  for (let y = 0; y < 8; y += 1) {
+    for (let x = 0; x < 8; x += 1) {
+      const temp = nodeArray[y][x];
+      if ((x - 1) >= 0 && (y - 2) >= 0) temp.setTL(nodeArray[y - 2][x - 1]);
+      if ((x + 1) < 8 && (y - 2) >= 0) temp.setTR(nodeArray[y - 2][x + 1]);
+      if ((x + 2) < 8 && (y - 1) >= 0) temp.setRT(nodeArray[y - 1][x + 2]);
+      if ((x + 2) < 8 && (y + 1) < 8) temp.setRB(nodeArray[y + 1][x + 2]);
+      if ((x + 1) < 8 && (y + 2) < 8) temp.setBR(nodeArray[y + 2][x + 1]);
+      if ((x - 1) >= 0 && (y + 2) < 8) temp.setBL(nodeArray[y + 2][x - 1]);
+      if ((x - 2) >= 0 && (y + 1) < 8) temp.setLB(nodeArray[y + 1][x - 2]);
+      if ((x - 2) >= 0 && (y - 1) >= 0) temp.setLT(nodeArray[y - 1][x - 2]);
+    }
+  }
 }
 
 function knightMoves(startPosition, endPosition) {
