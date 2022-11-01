@@ -117,6 +117,14 @@ main {
   width: clamp(1rem, 70%, 3.5rem);;
 }
 
+.space .move-number {
+  color: green;
+  font-size: 0.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .board div:nth-child(-n + 8):nth-child(even),
 .board div:nth-child(n + 8):nth-child(-n + 16):nth-child(odd),
 .board div:nth-child(n + 17):nth-child(-n + 24):nth-child(even),
