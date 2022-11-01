@@ -29,6 +29,7 @@ function placeKnight(space) {
     alert('Position already occupied!');
     return;
   }
+  const knightBtn = document.querySelector('.knight-btn');
   const spaceWithKnight = document.querySelector('.knight-placed');
   if (spaceWithKnight) {
     spaceWithKnight.children[0].remove();
@@ -38,6 +39,7 @@ function placeKnight(space) {
   knightImg.src = knight;
   space.appendChild(knightImg);
   space.classList.toggle('knight-placed');
+  if (knightBtn.classList.contains('error')) knightBtn.classList.toggle('error');
 }
 
 function placeGoal(space) {
@@ -46,6 +48,7 @@ function placeGoal(space) {
     alert('Position already occupied!');
     return;
   }
+  const goalBtn = document.querySelector('.goal-btn');
   const spaceWithGoal = document.querySelector('.goal-placed');
   if (spaceWithGoal) {
     spaceWithGoal.children[0].remove();
@@ -55,6 +58,7 @@ function placeGoal(space) {
   goalImg.src = goal;
   space.appendChild(goalImg);
   space.classList.toggle('goal-placed');
+  if (goalBtn.classList.contains('error')) goalBtn.classList.toggle('error');
 }
 
 function resetBoard() {
@@ -71,12 +75,24 @@ function resetBoard() {
   // add code to remove move number spaces
 }
 
+function toggleError() {
+  const knightBtn = document.querySelector('.knight-btn');
+  const goalBtn = document.querySelector('.goal-btn');
+  const knightSpace = document.querySelector('.knight-placed');
+  const goalSpace = document.querySelector('.goal-placed');
+  if (!knightSpace) {
+    if (knightBtn.classList.contains('error')) knightBtn.classList.toggle('error');
+    setTimeout(() => knightBtn.classList.toggle('error'), 100);
+  }
+  if (!goalSpace) {
+    if (goalBtn.classList.contains('error')) goalBtn.classList.toggle('error');
+    setTimeout(() => goalBtn.classList.toggle('error'), 100);
+  }
+}
+
 const buttonsContainer = document.querySelector('.buttons');
 const board = document.querySelector('.board');
-// const placeKnightBtn = document.querySelector('.knight-btn');
-// const goalBtn = document.querySelector('.goal-btn');
 const resetBtn = document.querySelector('.reset-btn');
-const travailBtn = document.querySelector('.travail-btn');
 
 buttonsContainer.addEventListener('click', (e) => {
   let btn = e.target.closest('.knight-btn');
@@ -102,3 +118,5 @@ resetBtn.addEventListener('click', () => {
   if (resetBtn.classList.contains('active-btn')) activateButtons(resetBtn);
   resetBoard();
 });
+
+export default toggleError;
