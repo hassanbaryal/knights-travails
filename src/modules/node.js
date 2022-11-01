@@ -85,9 +85,44 @@ function createGraph(nodeArray) {
   }
 }
 
-function knightMoves(startPosition, endPosition) {
-  console.log(startPosition);
-  console.log(endPosition);
+// This function calculates the shortest path from the start position (signified by node),
+// and the end position (signified by endPosition array).
+// This utilizes a breadth first search algorithm
+// (a depth first algorithm would cause an infinite loop of recursive calls).
+function knightMoves(node, endPosition, cb = null, queue = [], traversalPath = []) {
+  if (node.x === endPosition[0] && node.y === endPosition[1]) {
+    traversalPath.push(node);
+    return traversalPath;
+  }
+  if (queue.length < 1) {
+    if (cb) cb(node);
+    queue.push(node);
+  }
+  traversalPath.push(queue[0]);
+  if (node.tl !== null) queue.push(node.tl);
+  if (node.tr !== null) queue.push(node.tr);
+  if (node.rt !== null) queue.push(node.rt);
+  if (node.rb !== null) queue.push(node.rb);
+  if (node.br !== null) queue.push(node.br);
+  if (node.bl !== null) queue.push(node.bl);
+  if (node.lb !== null) queue.push(node.lb);
+  if (node.lt !== null) queue.push(node.lt);
+  const found = queue.find((item) => (item.x === endPosition[0] && item.y === endPosition[1]));
+  // If queue contains end position, return an array of
+  // [node with position before end position, endPosition node]
+  // BASE CASE! This will break the recursion
+  if (found) {
+    return [queue[0]].concat([found]);
+  }
+  const removedNode = queue.shift();
+  const shortestPath = knightMoves(queue[0], endPosition, cb, queue, traversalPath);
+  const removedNodeValues = Object.values(removedNode);
+  if (removedNodeValues.includes(shortestPath[0])) {
+    return [removedNode].concat(shortestPath);
+  }
+  return shortestPath;
 }
 
-export { Node, knightMoves };
+export {
+  Node, createNodeArray, createGraph, knightMoves,
+};
