@@ -118,11 +118,12 @@ main {
 }
 
 .space .move-number {
-  color: green;
-  font-size: 0.5rem;
+  color: royalblue;
+  font-size: 2rem;
   position: absolute;
   top: 0;
   left: 0;
+  padding-left: 2px;
 }
 
 .board div:nth-child(-n + 8):nth-child(even),
