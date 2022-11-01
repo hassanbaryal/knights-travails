@@ -124,4 +124,4 @@ resetBtn.addEventListener('click', () => {
   resetBoard();
 });
 
-export default toggleError;
+export { toggleError, activateButtons };
